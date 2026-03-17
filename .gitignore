@@ -1,0 +1,9 @@
+# Database Connection
+db_connect.php
+
+# Local Configuration
+.env
+.DS_Store
+Thumbs.db
+node_modules/
+vendor/
