@@ -1,0 +1,91 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "course_name": "Python",
+      "image_url": "assets/python.jpeg"
+    },
+    {
+      "id": 2,
+      "course_name": "PHP",
+      "image_url": "assets/php.png"
+    },
+    {
+      "id": 3,
+      "course_name": "JavaScript",
+      "image_url": "assets/javascript.png"
+    }
+  ],
+  "videos": [
+    {
+      "id": 1,
+      "course_id": 1,
+      "title": "Python Tutorial for Beginners",
+      "thumbnail_url": "https://img.youtube.com/vi/rfscVS0vtbw/maxresdefault.jpg",
+      "view_count": 12000000,
+      "likes": 450000,
+      "comments": 12000,
+      "video_url": "https://www.youtube.com/watch?v=rfscVS0vtbw"
+    },
+    {
+      "id": 2,
+      "course_id": 1,
+      "title": "Python Crash Course",
+      "thumbnail_url": "https://img.youtube.com/vi/Z1Yd7upQsXY/maxresdefault.jpg",
+      "view_count": 3500000,
+      "likes": 120000,
+      "comments": 4500,
+      "video_url": "https://www.youtube.com/watch?v=Z1Yd7upQsXY"
+    },
+    {
+      "id": 3,
+      "course_id": 1,
+      "title": "Learn Python in 6 Hours",
+      "thumbnail_url": "https://img.youtube.com/vi/H1VlE1A2vT0/hqdefault.jpg",
+      "view_count": 2100000,
+      "likes": 85000,
+      "comments": 3200,
+      "video_url": "https://www.youtube.com/watch?v=H1VlE1A2vT0"
+    },
+    {
+      "id": 4,
+      "course_id": 1,
+      "title": "Advanced Python Course",
+      "thumbnail_url": "https://img.youtube.com/vi/k6U-X6u_X7U/maxresdefault.jpg",
+      "view_count": 1500000,
+      "likes": 60000,
+      "comments": 1500,
+      "video_url": "https://www.youtube.com/watch?v=k6U-X6u_X7U"
+    },
+    {
+      "id": 5,
+      "course_id": 1,
+      "title": "Python for Data Science",
+      "thumbnail_url": "https://img.youtube.com/vi/Xn7K8A4N8P0/maxresdefault.jpg",
+      "view_count": 1100000,
+      "likes": 40000,
+      "comments": 1100,
+      "video_url": "https://www.youtube.com/watch?v=Xn7K8A4N8P0"
+    },
+    {
+      "id": 6,
+      "course_id": 2,
+      "title": "PHP for Beginners",
+      "thumbnail_url": "https://img.youtube.com/vi/OK_JCtrrv-c/maxresdefault.jpg",
+      "view_count": 500000,
+      "likes": 15000,
+      "comments": 900,
+      "video_url": "https://www.youtube.com/watch?v=OK_JCtrrv-c"
+    },
+    {
+      "id": 7,
+      "course_id": 3,
+      "title": "JavaScript Course",
+      "thumbnail_url": "https://img.youtube.com/vi/W6NZfCO5SIk/maxresdefault.jpg",
+      "view_count": 8000000,
+      "likes": 250000,
+      "comments": 15000,
+      "video_url": "https://www.youtube.com/watch?v=W6NZfCO5SIk"
+    }
+  ]
+}

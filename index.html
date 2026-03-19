@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLearn | Static Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">CodeLearn</a>
+        </nav>
+    </header>
+
+    <main class="container" id="main-content">
+        <!-- Content will be rendered by JavaScript -->
+        <div class="loader">Loading excellence...</div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> CodeLearn. Premium Education for the Driven.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        async function init() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                
+                const urlParams = new URLSearchParams(window.location.search);
+                const courseId = urlParams.get('course_id');
+
+                if (courseId) {
+                    renderCoursePage(data, parseInt(courseId));
+                } else {
+                    renderHomePage(data);
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('main-content').innerHTML = '<p style="color: var(--text-secondary);">Error loading courses. Please try again later.</p>';
+            }
+        }
+
+        function renderHomePage(data) {
+            const main = document.getElementById('main-content');
+            let html = `
+                <section class="hero">
+                    <h1>Unlock Your Coding Potential</h1>
+                    <p>Curated 1M+ views programming excellence. Choose your discipline and start your journey today.</p>
+                </section>
+                <div class="card-grid">
+            `;
+
+            data.courses.forEach(course => {
+                html += `
+                    <div class="card">
+                        <div class="image-container">
+                            <img src="${course.image_url}" alt="${course.course_name}" onerror="this.src='https://via.placeholder.com/400x225?text=${course.course_name}'">
+                        </div>
+                        <div class="info">
+                            <h2 class="title">${course.course_name} Specialization</h2>
+                            <a href="index.html?course_id=${course.id}" class="btn-watch">Start Learning</a>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            main.innerHTML = html;
+        }
+
+        function renderCoursePage(data, courseId) {
+            const main = document.getElementById('main-content');
+            const course = data.courses.find(c => c.id === courseId);
+            const videos = data.videos.filter(v => v.course_id === courseId);
+
+            if (!course) {
+                main.innerHTML = '<p style="color: var(--text-secondary);">Course not found. <a href="index.html" class="back-link">Back to Home</a></p>';
+                return;
+            }
+
+            let html = `
+                <div style="margin-top: 3rem;">
+                    <a href="index.html" class="back-link">← All Courses</a>
+                    
+                    <h2 style="font-size: 2.5rem; font-weight: 900; color: var(--text-primary); margin-bottom: 3rem; text-transform: uppercase; border-left: 8px solid var(--primary-red); padding-left: 1.5rem;">
+                        ${course.course_name}
+                    </h2>
+                    
+                    <div class="card-grid">
+            `;
+
+            if (videos.length === 0) {
+                html += `<p style="color: var(--text-secondary);">No premium tutorials found for this course yet.</p>`;
+            } else {
+                videos.forEach(video => {
+                    html += `
+                        <a href="${video.video_url}" target="_blank" class="card">
+                            <div class="image-container">
+                                <img src="${video.thumbnail_url}" alt="${video.title}">
+                            </div>
+                            <div class="info">
+                                <h3 class="title">${video.title}</h3>
+                                <div class="stats">
+                                    <span>👁️ ${new Intl.NumberFormat().format(video.view_count)}</span>
+                                    <span>👍 ${new Intl.NumberFormat().format(video.likes)}</span>
+                                </div>
+                                <span class="btn-watch" style="margin-top: 1.5rem;">Watch on YouTube</span>
+                            </div>
+                        </a>
+                    `;
+                });
+            }
+
+            html += `
+                    </div>
+                </div>
+            `;
+            main.innerHTML = html;
+        }
+
+        // Initialize the app
+        init();
+
+        // Handle browser navigation (back/forward)
+        window.onpopstate = () => init();
+    </script>
+</body>
+</html>
